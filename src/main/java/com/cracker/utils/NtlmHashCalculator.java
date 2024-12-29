@@ -1,15 +1,17 @@
 package com.cracker.utils;
 
 import com.cracker.request.HashType;
+import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class NtlmHashCalculator extends HashCalculator{
+@Service
+public class NtlmHashCalculator implements IHashCalculator{
 
     @Override
-    protected HashType getHashType() {
+    public HashType getHashType() {
         return HashType.NTLM;
     }
 

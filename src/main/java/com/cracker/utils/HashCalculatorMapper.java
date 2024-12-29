@@ -1,22 +1,32 @@
 package com.cracker.utils;
 
 import com.cracker.request.HashType;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+@Service
 public class HashCalculatorMapper {
 
-    private static final Map<HashType, HashCalculator> hashTypeHashCalculatorMap = new HashMap<>() ;
+    private final Map<HashType, IHashCalculator> hashTypeHashCalculatorMap = new HashMap<>() ;
 
-    public void registerCalculatorMapper (HashCalculator hashCalculator, HashType hashType){
+    @Autowired
+    public HashCalculatorMapper (List<IHashCalculator> hashCalculatorList){
+        for (IHashCalculator hashCalculator: hashCalculatorList){
+            registerCalculatorMapper(hashCalculator, hashCalculator.getHashType());
+        }
+    }
+
+    private void registerCalculatorMapper (IHashCalculator hashCalculator, HashType hashType){
         hashTypeHashCalculatorMap.putIfAbsent(hashType, hashCalculator);
     }
 
-    public HashCalculator get (HashType hashType){
+    public IHashCalculator get (HashType hashType){
         return hashTypeHashCalculatorMap.get(hashType);
     }
-    public Map<HashType, HashCalculator> getMapper (){
+    public Map<HashType, IHashCalculator> getMapper (){
         return hashTypeHashCalculatorMap ;
     }
 }
