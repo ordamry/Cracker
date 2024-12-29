@@ -1,11 +1,11 @@
 package com.cracker.request;
 
-public class Request {
+public class CrackerRequest {
     private String hashToCrack ;
     private EngineType engineType ;
     private HashType hashType ;
 
-    public Request (String hashToCrack, EngineType engineType, HashType hashType)
+    public CrackerRequest(String hashToCrack, EngineType engineType, HashType hashType)
     {
         this.hashToCrack = hashToCrack ;
         this.engineType = engineType ;

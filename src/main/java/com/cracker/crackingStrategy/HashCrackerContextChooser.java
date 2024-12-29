@@ -2,11 +2,15 @@ package com.cracker.crackingStrategy;
 
 import com.cracker.request.EngineType;
 import com.cracker.services.HashDictionaryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class HashCrackerContextChooser {
 
     private final HashDictionaryService hashDictionaryService;
 
+    @Autowired
     public HashCrackerContextChooser (HashDictionaryService hashDictionaryService){
         this.hashDictionaryService = hashDictionaryService ;
     }
